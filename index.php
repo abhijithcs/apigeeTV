@@ -1,6 +1,6 @@
 <?php
 $page = $_SERVER['PHP_SELF'];
-$sec = "320";
+$sec = "910";
 
 define('INCLUDE_CHECK', true);
 require 'connect.php';

@@ -483,7 +483,7 @@ echo"
 
 								'<label>Frequency</label>' +
 
-'<div class=\"input-control select\" data-role=\"input-control\"><select name=\"frequency\" required><option value=\"60000\">Repeat every 1 Minute</option><option value=\"300000\">Repeat every 5 Minutes</option><option value=\"600000\">Repeat every 10 Minutes</option><option value=\"900000\">Repeat every 15 Minutes</option><option value=\"1800000\">Repeat every 30 Minutes</option><option value=\"2700000\">Repeat every 45 Minutes</option><option value=\"3600000\">Repeat every 1 Hour</option><option value=\"7200000\">Repeat every 2 Hours</option></select></div>' +
+'<div class=\"input-control select\" data-role=\"input-control\"><select name=\"frequency\" required><option value=\"30000\">Repeat every 30 Seconds</option><option value=\"60000\">Repeat every 1 Minute</option><option value=\"120000\">Repeat every 2 Minutes</option><option value=\"300000\">Repeat every 5 Minutes</option><option value=\"600000\">Repeat every 10 Minutes</option><option value=\"900000\">Repeat every 15 Minutes</option></select></div>' +
 
 					    '<label style=\"color: #000000\">Expires at 23:59 HRS on:</label>' +
                                             '<div class=\"input-control text\"><input placeholder=\"Expires On\" type=\"date\" name=\"deadline\" required></div>' +
