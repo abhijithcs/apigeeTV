@@ -97,6 +97,17 @@ echo '<a href = logout.php><button class="button place-right">LOGOUT</button></a
 			header('Location: index.php');
     		}
 
+    		if($_GET['action']=='addVideo') 
+		{
+			mysql_query("DELETE FROM youTubeData WHERE yId= '1' ");
+
+			$videoUrl 	= $_POST['youtubeUrl'];
+
+			mysql_query("INSERT INTO youTubeData (yUrl, yFlag, yId) VALUES ('{$videoUrl}', '1', '1')");
+
+			header('Location: index.php');
+    		}
+
     		if($_GET['action']=='deletePost') 
 		{
 			if(!empty($_POST['delete'])) 
@@ -117,11 +128,18 @@ echo '<a href = logout.php><button class="button place-right">LOGOUT</button></a
 			header('Location: index.php');
     		}
 
+    		if($_GET['action']=='deleteVideo') 
+		{
+			mysql_query("UPDATE youTubeData SET yFlag='0' WHERE yId='1'");
+
+			header('Location: index.php');
+    		}
+
 echo'
 
                     <div class=" tripleF double-vertical fg-white" style="height: auto">
 <center>
-<button id="addPost" class="button success" style="margin-right: 10px">Add a Post</button><button id="mainStory" class="button success" style="margin-right: 10px">Change Main Story</button><button id="addNotification" class="button success" style="margin-right: 10px">New Notification</button>
+<button id="addPost" class="button success" style="margin-right: 10px">Add a Post</button><button id="mainStory" class="button success" style="margin-right: 10px">Change Main Story</button>
 </center>
                         </div>
 
@@ -158,41 +176,6 @@ echo "
                                             '</form>';
 
                                     $.Dialog.title(\"Add a new Post\");
-                                    $.Dialog.content(content);
-                                }
-                            });
-                        });
-	</script>
-
-	<script>
-                        $(\"#addNotification\").on('click', function(){
-                            $.Dialog({
-                                overlay: true,
-                                shadow: true,
-                                flat: true,
-                                draggable: true,
-                                icon: '<img src=\"images/favicon.png\">',
-                                title: 'Flat window',
-                                content: '',
-                                padding: 10,
-                                onShow: function(_dialog){
-                                    var content = '<form class=\"user-input\" method=\"post\" action=\"?action=addNotification\">' +
-                                            '<div class=\"input-control text\"><input placeholder=\"Subject\" type=\"text\" name=\"subject\" required></div>' +                                            
-					'<div class=\"input-control textarea\" data-role=\"input-control\"><textarea placeholder=\"Details\" name=\"details\" required></textarea></div>' +
-
-								'<label>Frequency</label>' +
-
-'<div class=\"input-control select\" data-role=\"input-control\"><select name=\"frequency\" required><option value=\"60000\">Repeat every 1 Minute</option><option value=\"300000\">Repeat every 5 Minutes</option><option value=\"600000\">Repeat every 10 Minutes</option><option value=\"900000\">Repeat every 15 Minutes</option><option value=\"1800000\">Repeat every 30 Minutes</option><option value=\"2700000\">Repeat every 45 Minutes</option><option value=\"3600000\">Repeat every 1 Hour</option><option value=\"7200000\">Repeat every 2 Hours</option></select></div>' +
-
-					    '<label style=\"color: #000000\">Expires at 23:59 HRS on:</label>' +
-                                            '<div class=\"input-control text\"><input placeholder=\"Expires On\" type=\"date\" name=\"deadline\" required></div>' +
-                                            '<br><br><div class=\"form-actions\">' +
-                                            '<input type=\"submit\" value=\"Start Notifying\">&nbsp;'+
-                                            '<button class=\"button\" type=\"button\" onclick=\"$.Dialog.close()\">Cancel</button> '+
-                                            '</div>'+
-                                            '</form>';
-
-                                    $.Dialog.title(\"Add a Notification\");
                                     $.Dialog.content(content);
                                 }
                             });
@@ -341,13 +324,13 @@ echo '
 		if($isActive == 1)
 		{
 			echo'
-				<h1 style="color: #088A29; font-size: 15px; ">Status : Has been displaying every '.($value["nFrequency"]/60000).' minutes on Apigee TV. Will be active until 23:59 HRS on '.$deadline.'.</h1><br><button id="deleteNotification" class="button success" style="margin-right: 10px">Kill Notification</button>
+				<h1 style="color: #088A29; font-size: 15px; ">Status : Has been displaying every '.($value["nFrequency"]/60000).' minutes on Apigee TV. Will be active until 23:59 HRS on '.$deadline.'.</h1><br><center><button id="deleteNotification" class="button danger" style="margin-right: 10px">Kill Notification</button><button id="addNotification" class="button success" style="margin-right: 10px">Change Notification</button></center>
 			';
 		}
 		else
 		{
 			echo'
-				<h1 style="color: #FF0000; font-size: 15px; ">Status : Not active. Expired at 23:59 HRS on '.$deadline.'.</h1>
+				<h1 style="color: #FF0000; font-size: 15px; ">Status : Not active. Expired at 23:59 HRS on '.$deadline.'.</h1><center><button id="addNotification" class="button primary" style="margin-right: 10px">Start a New Notification</button></center>
 			';
 
 		}
@@ -360,7 +343,12 @@ echo'
 		else
 		{
 echo'
-		<center><p style="font-size: 20px; color: #444444">There are no Running Notifications!</p></center>
+		<div class="example" style="margin-bottom: 50px">
+		<center><p style="font-size: 15px; color: #444444">There are no Running Notifications!</p>
+<br>
+<button id="addNotification" class="button primary" style="margin-right: 10px">Start a New Notification</button>
+</center>	
+		</div>
 ';
 		}
 
@@ -378,6 +366,37 @@ echo'
 		</div>
 ';
 
+//Graphs OR Video
+
+		$row = mysql_fetch_array(mysql_query("SELECT yId, yUrl, yFlag FROM youTubeData WHERE 1"));
+		$url = $row['yUrl'];
+echo'
+		<center><h1 style="color: #444444; font-size: 30px; padding-top:50px;">OPTIONAL VIDEO</h1></center>
+';
+
+		if($row['yFlag'] == 1)
+		{
+echo'		
+		<div class="example" style="margin-bottom: 50px">
+		<center>
+		<h1 style="color: #088A29; font-size: 20px; ">The following video is displayed on Apigee TV Now!</h1>
+		<iframe width="560" height="315" src="https://www.youtube.com/v/'.$url.'?version=3&loop=1&playlist='.$url.'&autoplay=1"></iframe><br>
+		<button id="deleteVideo" class="button danger" style="margin-right: 10px">Kill Video</button><button id="addVideo" class="button success" style="margin-right: 10px">Change Video</button>
+		</center>
+		</div>
+';
+		}
+		else
+		{
+echo'
+		<center><p style="font-size: 15px; color: #444444">There is no Video displayed currently. The real time graphs are displayed on Apigee TV now!</p>
+<br>
+<button id="addVideo" class="button primary" style="margin-right: 10px">Display a Video</button>
+</center>
+<br><br>
+
+';
+		}
 
 
 ?>
@@ -417,6 +436,98 @@ echo"
                             });
                         });
 	</script>
+
+	<script>
+                        $(\"#deleteVideo\").on('click', function(){
+                            $.Dialog({
+                                overlay: true,
+                                shadow: true,
+                                flat: true,
+                                draggable: true,
+                                icon: '<img src=\"images/favicon.png\">',
+                                title: 'Flat window',
+                                content: '',
+                                padding: 10,
+                                onShow: function(_dialog){
+                                    var content = '<form class=\"user-input\" method=\"post\" action=\"?action=deleteVideo\">' +
+					    '<label style=\"color: #000000\">Are you sure want to stop playing the video and show real time graphs?</label>' +
+                                            '<br><br><div class=\"form-actions\">' +
+                                            '<input type=\"submit\" value=\"Yes\">&nbsp;'+
+                                            '<button class=\"button\" type=\"button\" onclick=\"$.Dialog.close()\">Cancel</button> '+
+                                            '</div>'+
+                                            '</form>';
+
+                                    $.Dialog.title(\"Kill Video\");
+                                    $.Dialog.content(content);
+                                }
+                            });
+                        });
+	</script>
+
+
+	<script>
+                        $(\"#addNotification\").on('click', function(){
+                            $.Dialog({
+                                overlay: true,
+                                shadow: true,
+                                flat: true,
+                                draggable: true,
+                                icon: '<img src=\"images/favicon.png\">',
+                                title: 'Flat window',
+                                content: '',
+                                padding: 10,
+                                onShow: function(_dialog){
+                                    var content = '<form class=\"user-input\" method=\"post\" action=\"?action=addNotification\">' +
+                                            '<div class=\"input-control text\"><input placeholder=\"Subject\" type=\"text\" name=\"subject\" required></div>' +                                            
+					'<div class=\"input-control textarea\" data-role=\"input-control\"><textarea placeholder=\"Details\" name=\"details\" required></textarea></div>' +
+
+								'<label>Frequency</label>' +
+
+'<div class=\"input-control select\" data-role=\"input-control\"><select name=\"frequency\" required><option value=\"60000\">Repeat every 1 Minute</option><option value=\"300000\">Repeat every 5 Minutes</option><option value=\"600000\">Repeat every 10 Minutes</option><option value=\"900000\">Repeat every 15 Minutes</option><option value=\"1800000\">Repeat every 30 Minutes</option><option value=\"2700000\">Repeat every 45 Minutes</option><option value=\"3600000\">Repeat every 1 Hour</option><option value=\"7200000\">Repeat every 2 Hours</option></select></div>' +
+
+					    '<label style=\"color: #000000\">Expires at 23:59 HRS on:</label>' +
+                                            '<div class=\"input-control text\"><input placeholder=\"Expires On\" type=\"date\" name=\"deadline\" required></div>' +
+                                            '<br><br><div class=\"form-actions\">' +
+                                            '<input type=\"submit\" value=\"Start Notifying\">&nbsp;'+
+                                            '<button class=\"button\" type=\"button\" onclick=\"$.Dialog.close()\">Cancel</button> '+
+                                            '</div>'+
+                                            '</form>';
+
+                                    $.Dialog.title(\"Add a Notification\");
+                                    $.Dialog.content(content);
+                                }
+                            });
+                        });
+	</script>
+
+	<script>
+                        $(\"#addVideo\").on('click', function(){
+                            $.Dialog({
+                                overlay: true,
+                                shadow: true,
+                                flat: true,
+                                draggable: true,
+                                icon: '<img src=\"images/favicon.png\">',
+                                title: 'Flat window',
+                                content: '',
+                                padding: 10,
+                                onShow: function(_dialog){
+                                    var content = '<form class=\"user-input\" method=\"post\" action=\"?action=addVideo\">' +
+                                            '<div class=\"input-control text\"><input placeholder=\"YouTube Video ID\" type=\"text\" name=\"youtubeUrl\" required></div>' +                                            
+                                            '<br><br><div class=\"form-actions\">' +
+                                            '<input type=\"submit\" value=\"Save\">&nbsp;'+
+                                            '<button class=\"button\" type=\"button\" onclick=\"$.Dialog.close()\">Cancel</button> '+
+                                            '</div>'+
+                                            '</form>';
+
+                                    $.Dialog.title(\"Add a Video URL\");
+                                    $.Dialog.content(content);
+                                }
+                            });
+                        });
+	</script>
+
+
 ";
 ?>
 

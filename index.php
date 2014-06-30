@@ -225,9 +225,40 @@ echo'
 ?>
 				</div>
 			</div>
-			<!-- Graphs -->
-			<div class="boxes" style="height:360px">
+
+<?php
+//Display Options
+$check = mysql_fetch_array(mysql_query("SELECT yId, yUrl, yFlag FROM youTubeData WHERE 1"));
+$videoFlag = $check['yFlag'];
+$url = $check['yUrl'];
+
+if($videoFlag == 1)
+{
+	//Display Video
+echo '
+			<div class="boxes" style="height:360px; background: #000000">
 				<div class="details">
+
+<center>
+<iframe width="650" height="330" src="https://www.youtube.com/v/'.$url.'?version=3&loop=1&playlist='.$url.'&autoplay=1&showinfo=0&controls=0" frameBorder="0"></iframe>
+</center>
+';
+
+}
+else
+{
+	//Display Graphs
+
+date_default_timezone_set('Asia/Calcutta'); 
+$dateTo = date('Ymd');
+$dateFrom = $dateTo - 7;
+
+echo' 
+
+			<!-- Graphs -->
+			<div class="boxes" style="height:360px;">
+				<div class="details">
+
 <!-- GRAPH SLIDER BEGINS -->
 <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 770px; height: 330px; background: #000; overflow: hidden; ">
 
@@ -236,23 +267,24 @@ echo'
             <div style="filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block;
 
                 background-color: #000000; top: 0px; left: 0px;width: 100%;height:100%;">
+
             </div>
+
             <div style="position: absolute; display: block; background: url(../img/loading.gif) no-repeat center center;
 
+
+
                 top: 0px; left: 0px;width: 100%;height:100%;">
+
             </div>
         </div>
 
-<?php
-date_default_timezone_set('Asia/Calcutta'); 
-$dateTo = date('Ymd');
-$dateFrom = $dateTo - 7;
-
-echo '
 
         <!-- Slides Container -->
+
         <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 550px; height: 330px;
             overflow: hidden;">
+
             <div>
                 <img u="image" src="https://dashboard.apigee.net/render/?fontName=Helvetica&majorGridLineColor=%23C0C0C0&height=308&hideLegend=true&colorList=298FC2%2CFC4C02&xFormat=%25a%2C%20%25m%2F%25d&from=00%3A00_'.$dateFrom.'&bgcolor=white&minorGridLineColor=%23E0E0E0&minorY=1&width=586&fontSize=14&showTarget=alias(dashed(timeShift(metrics.googleanalytics.all.visits%2C%20%221week%22))%2C%20%22Past%20week%22)&until=00%3A00_'.$dateTo.'&drawNullAsZero=false&areaAlpha=0.15&fgcolor=%23808080&areaMode=first&graphOnly=false&lineWidth=3&margin=10&target=alias(metrics.googleanalytics.all.visits%2C%20%22Current%20week%22)&target=alias(dashed(timeShift(metrics.googleanalytics.all.visits%2C%20%221week%22))%2C%20%22Past%20week%22)&_salt=1403171367.524" />
                 <div u="thumb">
@@ -270,6 +302,7 @@ echo '
             <div>
                 <img u="image" src="https://dashboard.apigee.net/render/?fontName=Helvetica&majorGridLineColor=%23C0C0C0&height=308&hideLegend=true&colorList=298FC2%2CFC4C02&xFormat=%25a%2C%20%25m%2F%25d&from=00%3A00_'.$dateFrom.'&bgcolor=white&minorGridLineColor=%23E0E0E0&minorY=0&width=586&fontSize=10&showTarget=alias(dashed(timeShift(summarize(metrics.googleanalytics.appservices.visits%2C%222h%22)%2C%20%221week%22))%2C%20%22Past%20week%22)&until=00%3A00_'.$dateTo.'&drawNullAsZero=false&areaAlpha=0.15&hideYAxis=true&fgcolor=%23808080&areaMode=first&graphOnly=false&lineWidth=2&margin=0&target=alias(summarize(metrics.googleanalytics.appservices.visits%2C%222h%22)%2C%20%22Current%20week%22)&target=alias(dashed(timeShift(summarize(metrics.googleanalytics.appservices.visits%2C%222h%22)%2C%20%221week%22))%2C%20%22Past%20week%22)&_salt=1403171565.718" />
                 <div u="thumb">
+
                    <div class="t">490</div>
                     <div class="c">App Services ▼</div>
                 </div>
@@ -282,81 +315,129 @@ echo '
                 </div>
             </div>
         </div>
-';
-?>
-        
+
+
+
         <!-- ThumbnailNavigator Skin Begin -->
+
         <div u="thumbnavigator" class="jssort11" style="position: absolute; width: 250px; height: 330px; left:525px; top:0px;">
+
             <!-- Thumbnail Item Skin Begin -->
+
             <style>
 
+
                 .jssort11
+
                 {
                 	font-family: Arial, Helvetica, sans-serif;
+
 			background: #ffffff;
+
                 }
                 .jssort11 .t, .jssort11 .pav:hover .t
+
                 {
                 	text-align: center;
+
                 	color:#ff4300;
                 	font-size:15px;
+
 			padding-top: 10px;
                 	font-weight:700;
+
                 }
+
                 .jssort11 .pav .t, .jssort11 .phv .t, .jssort11 .p:hover .t
                 {
+
                 	color:#444444;
+
                 }
                 .jssort11 .c, .jssort11 .pav:hover .c
+
                 {
+
                 	color:#fff;
                 	font-size:13px;
+
                 	overflow: hidden;
+
 			padding-top: 5px;
                 	text-align: center;
+
+
 
                 }
                 .jssort11 .pav .c, .jssort11 .phv .c, .jssort11 .p:hover .c
                 {
+
                 	color:#ff4300;
                 }
+
                 .jssort11 .t, .jssort11 .c
+
                 {
                 	transition: color 2s;
+
                     -moz-transition: color 2s;
                     -webkit-transition: color 2s;
+
                     -o-transition: color 2s;
                 }
+
                 .jssort11 .p:hover .t, .jssort11 .phv .t, .jssort11 .pav:hover .t, .jssort11 .p:hover .c, .jssort11 .phv .c, .jssort11 .pav:hover .c
+
                 {
                 	transition: none;
+
                     -moz-transition: none;
                     -webkit-transition: none;
+
                     -o-transition: none;
                 }
+
                 .jssort11 .p
                 {
+
                 	background:#181818;
                 }
                 .jssort11 .pav, .jssort11 .pdn
+
                 {
+
                 	background:#f2f2f2;
                 }
+
                 .jssort11 .p:hover, .jssort11 .phv, .jssort11 .pav:hover
+
                 {
+
                 	background:#333;
                 }
+
             </style>
             <div u="slides" style="cursor: move;">
+
                 <div u="prototype" class="p" style="position: absolute; width: 200px; height: 75px; top: 0; left: 0;">
+
                     <thumbnailtemplate style=" width: 100%; height: 100%; border: none;position:absolute; top: 0; left: 0;"></thumbnailtemplate>
+
                 </div>
             </div>
+
             <!-- Thumbnail Item Skin End -->
+
         </div>
+
         <!-- ThumbnailNavigator Skin End -->
     </div>
+
 <!-- GRAPH SLIDER ENDS -->
+';
+}
+
+?>
 				</div>
 			</div>			
 			
