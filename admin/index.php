@@ -380,7 +380,7 @@ echo'
 		<div class="example" style="margin-bottom: 50px">
 		<center>
 		<h1 style="color: #088A29; font-size: 20px; ">The following video is displayed on Apigee TV Now!</h1>
-		<iframe width="560" height="315" src="https://www.youtube.com/v/'.$url.'?version=3&loop=0&playlist='.$url.'&autoplay=1"></iframe><br>
+		<iframe width="560" height="315" src="https://www.youtube.com/v/'.$url.'?version=3&loop=0&playlist='.$url.'&autoplay=0"></iframe><br>
 		<button id="deleteVideo" class="button danger" style="margin-right: 10px">Kill Video</button><button id="addVideo" class="button success" style="margin-right: 10px">Change Video</button>
 		</center>
 		</div>
