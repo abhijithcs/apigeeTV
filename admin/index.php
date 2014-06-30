@@ -389,12 +389,13 @@ echo'
 		else
 		{
 echo'
+
+		<div class="example" style="margin-bottom: 50px">
 		<center><p style="font-size: 15px; color: #444444">There is no Video displayed currently. The real time graphs are displayed on Apigee TV now!</p>
 <br>
 <button id="addVideo" class="button primary" style="margin-right: 10px">Display a Video</button>
-</center>
-<br><br>
-
+</center>	
+		</div>
 ';
 		}
 
