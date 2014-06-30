@@ -213,7 +213,7 @@ echo'						</ul>
 		<!-- Right Section -->
 		<div class="boxC1">
 			<!-- Story Board -->
-			<div class="boxes" style="height:200px">
+			<div class="boxes" style="height:200px;">
 				<div class="details">
 <?php
 					$row_story = mysql_fetch_array(mysql_query("SELECT sSubject, sDetails, sFooter FROM storyData WHERE 1"));
