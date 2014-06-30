@@ -218,7 +218,7 @@ echo'						</ul>
 <?php
 					$row_story = mysql_fetch_array(mysql_query("SELECT sSubject, sDetails, sFooter FROM storyData WHERE 1"));
 echo'
-					<h3 style="color:#ff4300; font-size:30px;">'.$row_story['sSubject'].'</h3>
+					<h3 style="color:#ff4300; font-size:30px; padding-top:0px;">'.$row_story['sSubject'].'</h3>
 					<p>'.$row_story['sDetails'].'</p>
 					<h3 style="color:#ff4300; font-size:15px;"> - '.$row_story['sFooter'].'</h3>
 ';

@@ -160,8 +160,8 @@ echo "
                                 padding: 10,
                                 onShow: function(_dialog){
                                     var content = '<form class=\"user-input\" method=\"post\" action=\"?action=addPost\">' +
-                                            '<div class=\"input-control text\"><input placeholder=\"Subject\" type=\"text\" name=\"subject\" required></div>' +                                            
-					'<div class=\"input-control textarea\" data-role=\"input-control\"><textarea placeholder=\"Details (Keep blank when you are posting into Orange Feed.)\" name=\"details\"></textarea></div>' +
+                                            '<div class=\"input-control text\"><input placeholder=\"Subject\" type=\"text\" maxlength=\"75\" name=\"subject\" required></div>' +                                            
+					'<div class=\"input-control textarea\" data-role=\"input-control\"><textarea placeholder=\"Details (Keep blank when you are posting into Orange Feed.)\" name=\"details\" maxlength=\"150\"></textarea></div>' +
 
                                             '<div class=\"input-control text\"><input placeholder=\"Name of Person (Keep blank not to display your name)\" type=\"text\" name=\"name\"></div>' +
 					    '<label style=\"color: #000000\">Expires at 23:59 HRS on:</label>' +
@@ -195,9 +195,9 @@ echo "
                                 padding: 10,
                                 onShow: function(_dialog){
                                     var content = '<form class=\"user-input\" method=\"post\" action=\"?action=mainStory\">' +
-					'<div class=\"input-control textarea\" data-role=\"input-control\"><textarea placeholder=\"Header \" name=\"subject\" required></textarea></div>' +
-					'<div class=\"input-control textarea\" data-role=\"input-control\"><textarea placeholder=\"Details \" name=\"details\" required></textarea></div>' +
-					'<div class=\"input-control textarea\" data-role=\"input-control\"><textarea placeholder=\"Footer \" name=\"footer\" required></textarea></div>' +    
+					'<div class=\"input-control textarea\" data-role=\"input-control\"><textarea placeholder=\"Header \" name=\"subject\" maxlength=\"50\" required></textarea></div>' +
+					'<div class=\"input-control textarea\" data-role=\"input-control\"><textarea placeholder=\"Details \" name=\"details\" maxlength=\"300\" required></textarea></div>' +
+					'<div class=\"input-control textarea\" data-role=\"input-control\"><textarea placeholder=\"Footer \" name=\"footer\" maxlength=\"60\" required></textarea></div>' +    
                                             '<br><div class=\"form-actions\">' +
                                             '<input type=\"submit\" value=\"Save\">&nbsp;'+
                                             '<button class=\"button\" type=\"button\" onclick=\"$.Dialog.close()\">Cancel</button> '+
@@ -478,8 +478,8 @@ echo"
                                 padding: 10,
                                 onShow: function(_dialog){
                                     var content = '<form class=\"user-input\" method=\"post\" action=\"?action=addNotification\">' +
-                                            '<div class=\"input-control text\"><input placeholder=\"Subject\" type=\"text\" name=\"subject\" required></div>' +                                            
-					'<div class=\"input-control textarea\" data-role=\"input-control\"><textarea placeholder=\"Details\" name=\"details\" required></textarea></div>' +
+                                            '<div class=\"input-control text\"><input placeholder=\"Subject\" type=\"text\" name=\"subject\" maxlength=\"180\" required></div>' +                                            
+					'<div class=\"input-control textarea\" data-role=\"input-control\"><textarea placeholder=\"Details\" name=\"details\" maxlength=\"750\" required></textarea></div>' +
 
 								'<label>Frequency</label>' +
 
