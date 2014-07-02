@@ -134,7 +134,7 @@ echo "
 		<!-- Left Section -->
 
 		<div class="boxA1">
-			<center><img src="images/logo.png" align="middle" height=90/></center>
+			<center><img src="images/logo.png" align="middle" style="height:90px; padding-bottom: 20px"/></center>
 			<div class="boxes-left margin-btm" style="height:490px">
 
 				<div class="details">
@@ -250,8 +250,10 @@ else
 	//Display Graphs
 
 date_default_timezone_set('Asia/Calcutta'); 
-$dateTo = date('Ymd');
-$dateFrom = $dateTo - 7;
+$dateTo = "20140625" ;
+$dateFrom = "20140621" ;
+//$dateTo = date('Ymd');
+//$dateFrom = $dateTo - 7;
 
 echo' 
 
