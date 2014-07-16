@@ -13,28 +13,23 @@ require 'connect.php';
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Apigee TV</title>
 
-    <link href="social_css/jquery.socialfeed.css" rel="stylesheet" type="text/css">
-    <link href="social_css/my_social_css.css" rel="stylesheet" type="text/css">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link href="css/facebook/jquery.socialfeed.css" rel="stylesheet" type="text/css">
+<link href="css/facebook/my_social_css.css" rel="stylesheet" type="text/css">
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
-        <script src="notify_js/jquery.js" type="text/javascript"></script>
-        <script src="notify_js/notifIt.js" type="text/javascript"></script>
-        <link href="notify_css/notifIt.css" type="text/css" rel="stylesheet">
-	<link href="notify_css/notify_main.css" type="text/css" rel="stylesheet">
+<script src="js/notification/jquery.js" type="text/javascript"></script>
+<script src="js/notification/notifIt.js" type="text/javascript"></script>
+<link href="css/notification/notifIt.css" type="text/css" rel="stylesheet">
+<link href="css/notification/notify_main.css" type="text/css" rel="stylesheet">
 
 
 <link rel="shortcut icon" href="images/fav.png" type="image/png" />
 <link href='http://fonts.googleapis.com/css?family=Pontano+Sans' rel='stylesheet' type='text/css'>
-<link href="default.css" rel="stylesheet" type="text/css" media="all" />
-<link href="fonts.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/main/default.css" rel="stylesheet" type="text/css" media="all" />
 
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
-    <link href="assets/css/main.css" rel="stylesheet">
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
-    <link href="assets/css/prism.css" rel="stylesheet" />
-    <link href="assets/css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
-
-<link href="tweet_css/tweet.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/feed/bootstrap.css" rel="stylesheet">
+<link href="css/feed/main.css" rel="stylesheet">
+<link href="css/tweet/tweet.css" rel="stylesheet" type="text/css" media="all" />
 
 </head>
 
@@ -54,13 +49,13 @@ require 'connect.php';
 	}
 ?>
 
-    <script type="text/javascript" src="slide_js/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="slide_js/jssor.core.js"></script>
-    <script type="text/javascript" src="slide_js/jssor.utils.js"></script>
-    <script type="text/javascript" src="slide_js/jssor.slider.js"></script>
+    <script type="text/javascript" src="js/slide/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/slide/jssor.core.js"></script>
+    <script type="text/javascript" src="js/slide/jssor.utils.js"></script>
+    <script type="text/javascript" src="js/slide/jssor.slider.js"></script>
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script type="text/javascript" src="tweetie.js"></script>
+    <script type="text/javascript" src="js/tweet/tweetie.js"></script>
 
 <!-- FOR NOTIFICATIONS -->
 
@@ -134,7 +129,7 @@ echo "
 		<!-- Left Section -->
 
 		<div class="boxA1">
-			<center><img src="images/logo.png" align="middle" style="height:90px; padding-bottom: 20px"/></center>
+
 			<div class="boxes-left margin-btm" style="height:490px">
 
 				<div class="details">
@@ -250,10 +245,9 @@ else
 	//Display Graphs
 
 date_default_timezone_set('Asia/Calcutta'); 
-$dateTo = "20140625" ;
-$dateFrom = "20140621" ;
-//$dateTo = date('Ymd');
-//$dateFrom = $dateTo - 7;
+
+$dateTo = date('Ymd');
+$dateFrom = $dateTo - 7;
 
 echo' 
 
@@ -504,11 +498,7 @@ echo'
     ================================================== -->
 
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="assets/js/chart.js"></script>
-    <script src="assets/js/bootstrap.js"></script>
-    <script src="assets/js/prism.js"></script>
-    <script src="assets/js/jquery.mCustomScrollbar.min.js"></script>
-    <script src="jquery.newsTicker.js"></script>
+    <script src="js/feed/jquery.newsTicker.js"></script>
     <script>
     		$('a[href*=#]').click(function(e) {
 			    var href = $.attr(this, 'href');
@@ -617,20 +607,20 @@ echo'
 
 <!-- FOR SOCIAL FACEBOOK -->
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="social_dependencies/doT.min.js"></script>
-    <script src="social_dependencies/moment.min.js"></script>
-    <script src="js_social/jquery.socialfeed.js"></script>
+    <script src="js/facebook/doT.min.js"></script>
+    <script src="js/facebook/moment.min.js"></script>
+    <script src="js/facebook/jquery.socialfeed.js"></script>
 
     <script>
     $(document).ready(function(){
         $('.social-feed-container').socialfeed({
-                    //FACEBOOK--------------------
+                    //FACEBOOK
                     facebook:{
                         accounts:['@apigee','##apigee'], //usernames or id
                         limit:10,
-                        token:'240696342763428|FgHgjfn7wWMNT15ONHP0tVdWm_k' //you can also create an app and put  here your 'APP ID|APP SECRET' - it is easier but not safe
+                        token:'240696342763428|FgHgjfn7wWMNT15ONHP0tVdWm_k' 
                     },
-                    //GENERAL SETTINGS--------------
+                    //GENERAL SETTINGS
                     length:130,
                     show_media:true,
                     callback: function(){
@@ -639,9 +629,6 @@ echo'
                 });
 	  });
 	</script>
-
-
-
 
 </body>
 </html>
